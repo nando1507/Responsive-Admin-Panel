@@ -1,8 +1,11 @@
 import 'package:admin/constants.dart';
 import 'package:admin/models/MyFiles.dart';
+import 'package:admin/models/RecentFile.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'components/file_info_card.dart';
+import 'components/grid_view_files.dart';
 import 'components/header.dart';
 import 'components/my_fields.dart';
 import 'components/storage_details.dart';
@@ -29,7 +32,81 @@ class DashboardScreen extends StatelessWidget {
               children: [
                 Expanded(
                   flex: 5,
-                  child: MyFields(),
+                  child: Column(
+                    children: [
+                      MyFields(),
+                      SizedBox(
+                        height: defaultPadding,
+                      ),
+                      GridViewFiles(),
+                      SizedBox(
+                        height: defaultPadding,
+                      ),
+                      Container(
+                        padding: EdgeInsets.all(
+                          defaultPadding,
+                        ),
+                        decoration: BoxDecoration(
+                          color: secondaryColor,
+                          borderRadius: const BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Recent Files",
+                              style: Theme.of(context).textTheme.subtitle1,
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: DataTable(
+                                columns: [
+                                  DataColumn(
+                                    label: Text("File Name"),
+                                  ),
+                                  DataColumn(
+                                    label: Text("Date"),
+                                  ),
+                                  DataColumn(
+                                    label: Text("Size"),
+                                  ),
+                                ],
+                                rows: [
+                                  DataRow(
+                                    cells: [
+                                      DataCell(
+                                        Row(
+                                          children: [
+                                            SvgPicture.asset(
+                                              demoRecentFiles[0].icon,
+                                              height: 30,
+                                              width: 30,
+                                            ),
+                                            Padding(
+                                              padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
+                                              child: Text(demoRecentFiles[0].title),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      DataCell(
+                                        Text(demoRecentFiles[0].date),
+                                      ),
+                                      DataCell(
+                                        Text(demoRecentFiles[0].size),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
                 SizedBox(
                   width: defaultPadding,
@@ -44,17 +121,6 @@ class DashboardScreen extends StatelessWidget {
             ),
             SizedBox(
               height: defaultPadding,
-            ),
-            GridView.builder(
-              shrinkWrap: true,
-              itemCount: demoMyFiels.length,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
-                crossAxisSpacing: defaultPadding,
-              ),
-              itemBuilder: (context, index) => FileInfoCard(
-                info: demoMyFiels[index],
-              ),
             ),
           ],
         ),

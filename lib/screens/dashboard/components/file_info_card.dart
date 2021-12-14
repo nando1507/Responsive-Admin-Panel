@@ -7,6 +7,7 @@ import '../../../constants.dart';
 
 class FileInfoCard extends StatelessWidget {
   final CloudStorageInfo info;
+
   const FileInfoCard({
     Key key,
     @required this.info,
@@ -24,13 +25,13 @@ class FileInfoCard extends StatelessWidget {
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.all(defaultPadding * 0.5),
+                padding: EdgeInsets.all(defaultPadding * 0.75),
                 height: 40,
                 width: 40,
                 decoration: BoxDecoration(
