@@ -7,7 +7,12 @@ import 'file_info_card.dart';
 class GridViewFiles extends StatelessWidget {
   const GridViewFiles({
     Key key,
+    this.crossAxisCount,
+    this.childAspectRatio,
   }) : super(key: key);
+
+  final int crossAxisCount;
+  final double childAspectRatio;
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +21,10 @@ class GridViewFiles extends StatelessWidget {
       shrinkWrap: true,
       itemCount: demoMyFiels.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
+        crossAxisCount: crossAxisCount,
         crossAxisSpacing: defaultPadding,
         mainAxisSpacing: defaultPadding,
-        childAspectRatio: 1.4,
+        childAspectRatio: childAspectRatio,
       ),
       itemBuilder: (context, index) => FileInfoCard(
         info: demoMyFiels[index],
