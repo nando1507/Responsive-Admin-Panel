@@ -1,5 +1,5 @@
+import 'package:admin/responsive.dart';
 import 'package:flutter/material.dart';
-
 import '../../../constants.dart';
 
 class MyFields extends StatelessWidget {
@@ -22,7 +22,7 @@ class MyFields extends StatelessWidget {
               style: TextButton.styleFrom(
                 padding: EdgeInsets.symmetric(
                   horizontal: defaultPadding * 1.5,
-                  vertical: defaultPadding,
+                  vertical: defaultPadding / (!Responsive.isMobile(context) ? 1 : 2),
                 ),
               ),
               onPressed: () {},

@@ -8,7 +8,7 @@ class Responsive extends StatelessWidget {
   const Responsive({
     Key key,
     @required this.mobile,
-    this.tablet,
+    @required this.tablet,
     @required this.desktop,
   }) : super(key: key);
 
